@@ -3,174 +3,244 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doubt Buster</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<title>Doubt Buster • Mobile Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0b0f14, #1c1f2a);
-    color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 15px;
-    overflow-x: hidden;
-  }
+/* ===== RESET ===== */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#1a1f2b;color:#fff;overflow-x:hidden;scroll-behavior:smooth;transition: background 0.5s, color 0.5s;}
+a{text-decoration:none;color:inherit;}
 
-  .container {
-    width: 100%;
-    max-width: 360px;
-    background: rgba(30, 25, 15, 0.95);
-    border-radius: 20px;
-    padding: 25px 20px 40px;
-    box-shadow: 0 0 30px rgba(139, 69, 19, 0.6);
-    animation: fadeInContainer 1.5s ease forwards;
-  }
+/* ===== SOFT GRADIENT BACKGROUND ===== */
+body::before{
+  content:"";
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: linear-gradient(135deg,#2e3a59,#1a1f2b,#3e4a70);
+  background-size: 400% 400%;
+  z-index:-10;
+  animation: gradientBG 25s ease infinite;
+}
+@keyframes gradientBG{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
 
-  @keyframes fadeInContainer {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
+/* ===== HERO ===== */
+.hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:120px 15px 80px;
+  position:relative;
+  z-index:1;
+}
+.logo-wrapper{
+  width:120px;
+  height:120px;
+  margin-bottom:20px;
+  cursor:pointer;
+  animation:logoBounce 2s ease-in-out infinite;
+}
+@keyframes logoBounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+.logo{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:4px solid #ffddaa;
+  box-shadow:0 0 40px #ffddaa;
+}
+.hero h1{
+  font-size:2rem; color:#ffe7c7;
+  text-shadow:0 0 20px #ffe7c7;
+  margin-bottom:12px;
+  overflow:hidden;
+  white-space:nowrap;
+  border-right:3px solid #ffe7c7;
+  width:0;
+  animation:typing 2.5s steps(18) forwards, blink 0.7s step-end infinite alternate;
+}
+@keyframes typing{from{width:0;} to{width:14ch;}}
+@keyframes blink{50%{border-color:transparent;}}
+.hero p{
+  font-size:1rem;
+  max-width:300px;
+  opacity:.85;
+  margin-top:10px;
+  animation:fadeIn 1.8s ease forwards 2.5s;
+}
 
-  h1 {
-    text-align: center;
-    font-size: 1.8rem;
-    color: #D2A679;
-    margin-bottom: 15px;
-    animation: goldenGlow 2s ease forwards;
-  }
+/* ===== FEATURES ===== */
+.features{
+  padding:60px 15px;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:20px;
+}
+.card{
+  background:rgba(255,255,255,.05);
+  border-radius:20px;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 0 25px rgba(255,200,120,.25);
+  perspective:1000px;
+  cursor:pointer;
+  transition:transform 0.5s;
+}
+.card-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.7s;
+  transform-style:preserve-3d;
+}
+.card:hover .card-inner{
+  transform:rotateY(180deg);
+}
+.card-front, .card-back{
+  position:absolute;
+  width:100%; height:100%;
+  backface-visibility:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:20px;
+  flex-direction:column;
+  padding:15px;
+  font-size:0.95rem;
+}
+.card-front{background:rgba(255,255,255,.05);}
+.card-back{background:rgba(255,220,150,.1); transform:rotateY(180deg);}
 
-  @keyframes goldenGlow {
-    0% { color: #654321; text-shadow: 0 0 0 #654321; }
-    50% { color: #D2A679; text-shadow: 0 0 15px #D2A679; }
-    100% { color: #D2A679; text-shadow: 0 0 0 #D2A679; }
-  }
+/* ===== CTA BUTTON ===== */
+.join-btn{
+  display:block;
+  width:80%;
+  max-width:280px;
+  margin:40px auto;
+  padding:15px 25px;
+  background:linear-gradient(135deg,#ffe9c1,#c68a32);
+  border-radius:50px;
+  font-weight:700;
+  font-size:1.1rem;
+  color:#000;
+  box-shadow:0 0 35px #ffddaa;
+  transition:.3s;
+  text-align:center;
+}
+.join-btn:hover{transform:scale(1.05); box-shadow:0 0 50px #ffddaa;}
 
-  /* Logo with attached glowing golden-brown ring */
-  .logo-wrapper {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 15px;
-    animation: 5s linear infinite;
-  }
+/* ===== ABOUT ===== */
+.about{
+  padding:60px 15px;
+  text-align:center;
+}
+.about h2{font-size:1.6rem; color:#ffe7c7; margin-bottom:12px; text-shadow:0 0 12px #ffe7c7;}
+.about p{font-size:0.95rem; max-width:350px; margin:0 auto; line-height:1.5; opacity:.9;}
 
-  .logo-wrapper img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-  }
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:25px 15px;
+  font-size:.85rem;
+  color:#ffddaa;
+  opacity:.85;
+  background:rgba(0,0,0,0.25);
+}
 
-  .logo-wrapper::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 110px;
-    height: 110px;
-    border: 4px solid #D2A679;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    /* Glow animation */
-    box-shadow: 0 0 5px #D2A679;
-    animation: glowRing 2s ease-in-out infinite alternate;
-  }
-
-  @keyframes rotateRing {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  @keyframes glowRing {
-    0% { box-shadow: 0 0 5px #D2A679; border-color: #D2A679; }
-    50% { box-shadow: 0 0 20px #D2A679; border-color: #D2A679; }
-    100% { box-shadow: 0 0 5px #D2A679; border-color: #D2A679; }
-  }
-
-  p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-  }
-
-  ul li {
-    background: rgba(139, 69, 19, 0.1);
-    border-left: 4px solid #D2A679;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    font-size: 0.9rem;
-    transition: transform 0.3s ease, background 0.3s ease;
-  }
-
-  ul li:hover {
-    transform: translateX(5px);
-    background: rgba(139, 69, 19, 0.2);
-  }
-
-  ul li span { margin-right: 8px; font-size: 1.1rem; }
-
-  .join-button {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background: linear-gradient(135deg, #D2A679, #8B4513);
-    color: #0b0f14;
-    font-weight: 600;
-    padding: 12px 0;
-    border-radius: 25px;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .join-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px #D2A679;
-  }
-
-  @media(max-width: 400px) {
-    h1 { font-size: 1.5rem; }
-    p { font-size: 0.9rem; }
-    ul li { font-size: 0.85rem; }
-  }
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0; transform:translateY(20px); transition:0.8s;}
+.reveal.active{opacity:1; transform:translateY(0);}
 </style>
 </head>
 <body>
-<div class="container">
-  <h1>Welcome to Doubt Buster</h1>
+
+<!-- HERO -->
+<div class="hero" id="hero">
   <div class="logo-wrapper">
-    <img src="https://cdn5.telesco.pe/file/d780phxrWwVqI7kFtcm2NO84UiwYh--_wLde00Lhd3YmT_8etgdDOykePRtxIh_9DTJ5OvlQ_Mt8tQhHGwc61KDmPRtwB3FmT4bJHN9A0i3VG--RtSpJsqg0gpXK4kqC0lo850MIryhhYJdLKq4XrUteLArgJbAg56IIdpeRmID6TMlFCbag_GYnUJVALlAWcLkaZs1UOKukI4jeOGCkzMEh70T2nTNzrf8SgRDql_j0vVmgfVAUOqLyvBFRV-JWgjhuuazktsUkfQ42HFt7u9-X7En4MF3l5V19P7z3fwxov1_cfS2XVmS6Hqs0lz1IJkwirZPZltHcjoq2xuH5tw.jpg" alt="Doubt Buster Logo">
+    <img class="logo" src="https://cdn5.telesco.pe/file/d780phxrWwVqI7kFtcm2NO84UiwYh--_wLde00Lhd3YmT_8etgdDOykePRtxIh_9DTJ5OvlQ_Mt8tQhHGwc61KDmPRtwB3FmT4bJHN9A0i3VG--RtSpJsqg0gpXK4kqC0lo850MIryhhYJdLKq4XrUteLArgJbAg56IIdpeRmID6TMlFCbag_GYnUJVALlAWcLkaZs1UOKukI4jeOGCkzMEh70T2nTNzrf8SgRDql_j0vVmgfVAUOqLyvBFRV-JWgjhuuazktsUkfQ42HFt7u9-X7En4MF3l5V19P7z3fwxov1_cfS2XVmS6Hqs0lz1IJkwirZPZltHcjoq2xuH5tw.jpg" alt="Logo">
   </div>
-  <p>Join our golden community of JEE & NEET aspirants. Clear doubts, stay consistent, and achieve your dreams!</p>
-  <ul>
-    <li><span>📚</span>Separate doubt sections per subject</li>
-    <li><span>🧑‍⚕️</span>Mentorship from GMC 2nd-year MBBS students</li>
-    <li><span>📂</span>Complete JEE & NEET materials</li>
-    <li><span>🎯</span>Daily Target Section</li>
-    <li><span>🔗</span>YPT Link Support</li>
-    <li><span>📝</span>Daily Live Quizzes</li>
-    <li><span>🤝</span>Friendly motivating community</li>
-  </ul>
-  <a href="https://t.me/neet_027/join1" class="join-button" target="_blank">Join Our Main Group</a>
+  <h1>Doubt Buster</h1>
+  <p>Be part of a focused community – quizzes, notes, doubts and daily motivation in one place. Everything you need during your prep!</p>
+  <a href="https://t.me/neet_027/join1" class="join-btn">Join Now</a>
 </div>
+
+<!-- FEATURES -->
+<div class="features" id="features">
+  <div class="card reveal">
+    <div class="card-inner">
+      <div class="card-front">📚<h3>Separate doubt sections per subject</h3></div>
+      <div class="card-back"><p>Clear doubts organized by each subject for focused learning.</p></div>
+    </div>
+  </div>
+  <div class="card reveal">
+    <div class="card-inner">
+      <div class="card-front">🧑‍⚕️<h3>Mentorship from GMC 2nd-year MBBS students</h3></div>
+      <div class="card-back"><p>Learn from experienced mentors guiding you step-by-step.</p></div>
+    </div>
+  </div>
+  <div class="card reveal">
+    <div class="card-inner">
+      <div class="card-front">📂<h3>Complete JEE & NEET materials</h3></div>
+      <div class="card-back"><p>All study resources, notes, and guides in one place.</p></div>
+    </div>
+  </div>
+  <div class="card reveal">
+    <div class="card-inner">
+      <div class="card-front">🎯<h3>Daily Target Section</h3></div>
+      <div class="card-back"><p>Set goals and track your daily learning progress.</p></div>
+    </div>
+  </div>
+  <div class="card reveal">
+    <div class="card-inner">
+      <div class="card-front">🔗<h3>YPT Link Support</h3></div>
+      <div class="card-back"><p>Easy access to external resources and links.</p></div>
+    </div>
+  </div>
+  <div class="card reveal">
+    <div class="card-inner">
+      <div class="card-front">📝<h3>Daily Live Quizzes</h3></div>
+      <div class="card-back"><p>Test yourself daily with live quizzes to improve retention.</p></div>
+    </div>
+  </div>
+  <div class="card reveal">
+    <div class="card-inner">
+      <div class="card-front">🤝<h3>Friendly motivating community</h3></div>
+      <div class="card-back"><p>Join a supportive community to stay motivated and engaged.</p></div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ABOUT -->
+<div class="about reveal" id="about">
+  <h2>About Doubt Buster</h2>
+  <p>Doubt Buster is a mobile-first community for JEE & NEET aspirants. Structured learning, mentorship, daily challenges, and a motivating environment ensure your success.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>© 2025 Doubt Buster. All Rights Reserved.</footer>
+
+<script>
+// ===== SCROLL REVEAL =====
+const reveals = document.querySelectorAll(".reveal");
+window.addEventListener("scroll", () => {
+  reveals.forEach(el => {
+    let windowHeight = window.innerHeight;
+    let elementTop = el.getBoundingClientRect().top;
+    let elementVisible = 120;
+    if(elementTop < windowHeight - elementVisible){ el.classList.add("active"); }
+  });
+});
+</script>
+
 </body>
 </html>
 
